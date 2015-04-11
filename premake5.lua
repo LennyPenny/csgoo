@@ -7,6 +7,7 @@ solution "cross"
 	language "C++"
 	location ("project " .. _ACTION)
 	targetdir ( "build/" )
+	startproject "crossproc"
 
 	--[[includedirs {
 		"deps",
