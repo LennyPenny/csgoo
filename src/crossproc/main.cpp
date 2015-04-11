@@ -19,7 +19,7 @@ int main(char *argv[], int argc) {
 
 	printf("%s\n", csgo->getWindowName());
 
-	while (true) {
+	for (;;) {
 		if (!csgo->checkForeGroundWindow()) {
 			Sleep(100); 
 			continue;
