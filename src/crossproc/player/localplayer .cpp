@@ -2,8 +2,13 @@
 
 using namespace glob;
 
+localPlayer *localPlayer::getLocalPlayer() {
+	static localPlayer lply;
+	return &lply;
+}
+
 localPlayer::localPlayer() {
-	plyPtr = getCsgo()->readMemory<DWORD>(offsets::LocalPlayer_offset);
+	plyPtr = mem::getCsgo()->readMemory<DWORD>(offsets::LocalPlayer_offset);
 }
 
 localPlayer::localPlayer(DWORD lplyPtr) {
@@ -11,5 +16,5 @@ localPlayer::localPlayer(DWORD lplyPtr) {
 }
 
 int localPlayer::getCrossHairID() {
-	return getCsgo()->readMemory<int>(getPlyPtr(), offsets::m_iCrosshairID);
+	return mem::getCsgo()->readMemory<int>(getPlyPtr(), offsets::m_iCrosshairID);
 }

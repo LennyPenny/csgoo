@@ -14,11 +14,11 @@ DWORD basePlayer::getPlyPtr() {
 }
 
 int basePlayer::getTeam() {
-	return getCsgo()->readMemory<int>(getPlyPtr(), offsets::m_iTeamNum);
+	return mem::getCsgo()->readMemory<int>(getPlyPtr(), offsets::m_iTeamNum);
 }
 
 int basePlayer::getHealth() {
-	return getCsgo()->readMemory<int>(getPlyPtr(), offsets::m_iHealth);
+	return mem::getCsgo()->readMemory<int>(getPlyPtr(), offsets::m_iHealth);
 }
 
 bool basePlayer::isAlive() {

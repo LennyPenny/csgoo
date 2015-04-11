@@ -3,14 +3,9 @@
 #include "player/localplayer.h"
 #include "entlist/entlist.h"
 
-#define safecontinue(msToWait) getCsgo()->closeHandle();Sleep(msToWait);continue;
+#define safecontinue(msToWait) csgo->closeHandle();Sleep(msToWait);continue;
 
 using namespace glob;
-
-mem *glob::getCsgo() {
-	static mem csgo("Counter-Strike: Global Offensive");
-	return &csgo;
-}
 
 localPlayer *getLocalPlayer() {
 	static localPlayer lply;
@@ -20,17 +15,19 @@ localPlayer *getLocalPlayer() {
 int main(char *argv[], int argc) {
 	printf("running...\n");
 
-	printf("%s\n", getCsgo()->getWindowName());
+	mem *csgo = mem::getCsgo();
+
+	printf("%s\n", csgo->getWindowName());
 
 	while (true) {
-		if (!getCsgo()->checkForeGroundWindow()) {
+		if (!csgo->checkForeGroundWindow()) {
 			Sleep(100); 
 			continue;
 		}
-		getCsgo()->setModule("client.dll");
+		csgo->setModule("client.dll");
 
 	
-		getCsgo()->openHandle();
+		csgo->openHandle();
 
 		localPlayer *lply = getLocalPlayer();
 		if (!lply->isAlive()) { safecontinue(100); }
@@ -47,7 +44,7 @@ int main(char *argv[], int argc) {
 		Sleep(10);
 		SendMessage(GetForegroundWindow(), WM_LBUTTONUP, MK_LBUTTON, MAKELPARAM(point.x, point.y));
 
-		getCsgo()->closeHandle();
+		csgo->closeHandle();
 		Sleep(10);
 	}
 

@@ -7,6 +7,9 @@
 
 class mem {
 public:
+
+	static mem *getCsgo();
+
 	mem(const char *windowName);
 	~mem();
 

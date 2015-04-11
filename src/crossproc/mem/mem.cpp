@@ -1,5 +1,11 @@
 #include "mem.h"
 
+mem *mem::getCsgo() {
+	static mem csgo("Counter-Strike: Global Offensive");
+	return &csgo;
+}
+
+
 mem::mem(const char *windowNamee) {
 	windowName = windowNamee;
 }

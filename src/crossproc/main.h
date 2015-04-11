@@ -13,7 +13,6 @@ const DWORD LocalPlayer_offset = 0xA4A98C;
 const DWORD m_iCrosshairID = 0x23F8;
 
 namespace glob {
-	mem *getCsgo();
 
 	namespace offsets {
 		const DWORD LocalPlayer_offset = 0xA4A98C;
