@@ -7,11 +7,6 @@
 
 using namespace glob;
 
-localPlayer *getLocalPlayer() {
-	static localPlayer lply;
-	return &lply;
-}
-
 int main(char *argv[], int argc) {
 	printf("running...\n");
 
@@ -29,7 +24,7 @@ int main(char *argv[], int argc) {
 	
 		csgo->openHandle();
 
-		localPlayer *lply = getLocalPlayer();
+		localPlayer *lply = localPlayer::getLocalPlayer();
 		if (!lply->isAlive()) { safecontinue(100); }
 		int idAtCrosshair = lply->getCrossHairID();
 		if (idAtCrosshair == 0) { safecontinue(10); }
