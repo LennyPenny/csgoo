@@ -48,13 +48,6 @@ solution "cross"
 		"src/shared/**.cpp",
 		"src/shared/**.h"
 	}
-	project "crossdll"
-		kind "SharedLib"
-		
-		files {
-			"src/crossdll/**.cpp",
-			"src/crossdll/**.h"
-		}
 
 	project "crossproc"
 		kind "ConsoleApp"
@@ -62,4 +55,12 @@ solution "cross"
 		files {
 			"src/crossproc/**.cpp",
 			"src/crossproc/**.h"
+		}
+
+	project "crossdll"
+		kind "SharedLib"
+		
+		files {
+			"src/crossdll/**.cpp",
+			"src/crossdll/**.h"
 		}
