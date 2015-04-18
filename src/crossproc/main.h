@@ -9,22 +9,23 @@
 #include "injector/injector.h"
 #include "mem/mem.h"
 
-const DWORD LocalPlayer_offset = 0xA4A98C;
-const DWORD m_iCrosshairID = 0x23F8;
+#define safecontinue(msToWait) csgo->closeHandle();Sleep(msToWait);continue;
 
 namespace glob {
 
-	namespace offsets {
-		const DWORD LocalPlayer_offset = 0xA4A98C;
+	namespace offsets
+	{
+		const DWORD LocalPlayer_offset = 0xa4b98c;
 		const DWORD HandleOnGround_offset = 0x14C;
-		const DWORD m_bSpotted = 0x9353;
-		const DWORD GlobalVars = 0x55A0C0;
+		const DWORD m_bSpotted  = 0x935;
+		const DWORD GlobalVars = 0x4e53b8;
 		const DWORD m_vecOrigin = 0x134;
-		const DWORD m_dwEntList = 0x4A0F0D4;
-		const DWORD m_iCrosshairID = 0x23F8;
+		const DWORD EntList = 0x49ed1b4;
+		const DWORD m_iCrosshairID = 0x2400;
 		const DWORD m_dwEntityList = 0x49EC194;
 		const DWORD m_iHealth = 0xfc;
-		const DWORD m_dwGlowObject = 0x4afcde4;
+		const DWORD m_dwGlowObject = 0x4afde04;
 		const DWORD m_iTeamNum = 0xf0;
+		const DWORD viewpunch = 0x13DC;
 	}
 }
