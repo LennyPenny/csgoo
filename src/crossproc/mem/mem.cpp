@@ -60,23 +60,47 @@ bool mem::checkForeGroundWindow() {
 	return false;
 }
 
-bool mem::setModule(const char *newModuleName) {
-	//if (moduleOffset != 0 )
-//		return true;
-
+const char *mem::getModuleOffsetEx(const char *ModuleName) {
 	while (true) {
 		HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, getProcID());
 		MODULEENTRY32 entry;
 		entry.dwSize = sizeof(entry);
 		if (Module32First(snapshot, &entry))
 			do {
-				if (!strcmp(entry.szModule, newModuleName)) {
+				if (!strcmp(entry.szModule, ModuleName)) {
 					CloseHandle(snapshot);
-					moduleOffset = (char *) entry.modBaseAddr;
-					return true;
+					return ( char * ) entry.modBaseAddr;
 				}
 			} while (Module32Next(snapshot, &entry));
-		CloseHandle(snapshot);
+			CloseHandle(snapshot);
+	}
+}
+
+const char *mem::getClientDllOffset() {
+	static const char *offset = getModuleOffsetEx("client.dll");
+	return offset;
+}
+
+const char *mem::getEngineDllOffset() {
+	static const char *offset = getModuleOffsetEx("engine.dll");
+	return offset;
+}
+
+bool mem::setModule(int num) {
+	switch (num) {
+		case CLIENTDLL:
+			moduleOffset = getClientDllOffset();
+			moduleName = "client.dll";
+			return true;
+			break;
+		case ENGINEDLL:
+			moduleOffset = getEngineDllOffset();
+			moduleName = "engine.dll";
+			return true;
+			break;
+		default:
+			return false;
+			break;
 	}
 }
 

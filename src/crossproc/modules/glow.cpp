@@ -11,6 +11,7 @@ void glow::logic() {
 	GlowObjectDefinition_t glowObjects[128];
 	int count = getGlowObjectCount();
 	size_t size = count * sizeof(GlowObjectDefinition_t);
+	imem->setModule(mem::CLIENTDLL);
 	ReadProcessMemory(imem->getHandle(), ( void * ) glowObjectArray, &glowObjects, size, nullptr);
 	for (int i = 0; i < count; i++) {
 		basePlayer curPlayer((DWORD)glowObjects[i].pEntity, imem);
@@ -29,14 +30,17 @@ void glow::logic() {
 		glowObjects[i].m_bRenderWhenOccluded = true;
 		glowObjects[i].m_bRenderWhenUnoccluded = false;
 	}
+	imem->setModule(mem::CLIENTDLL);
 	WriteProcessMemory(imem->getHandle(), ( void * ) glowObjectArray, &glowObjects, size, nullptr);
 }
 
 DWORD glow::getGlowObjectArray() {
+	imem->setModule(mem::CLIENTDLL);
 	return imem->readMemory<DWORD>(offsets::m_dwGlowObject);
 }
 
 uint32_t glow::getGlowObjectCount() {
+	imem->setModule(mem::CLIENTDLL);
 	return imem->readMemory<int>(offsets::m_dwGlowObject + 0x4);
 }
 

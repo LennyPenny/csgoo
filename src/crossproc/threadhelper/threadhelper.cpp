@@ -14,7 +14,7 @@ DWORD WINAPI loop(functype func) {
 			continue;
 		}
 
-		csgo->setModule("client.dll");
+		csgo->setModule(mem::CLIENTDLL);
 		csgo->openHandle();
 
 		func(csgo);

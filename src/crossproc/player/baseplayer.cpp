@@ -26,17 +26,21 @@ DWORD basePlayer::getPlyPtr() {
 }
 
 int basePlayer::getTeam() {
+	imem->setModule(mem::CLIENTDLL);
 	return imem->readMemory<int>(getPlyPtr(), offsets::m_iTeamNum);
 }
 
 int basePlayer::getHealth() {
+	imem->setModule(mem::CLIENTDLL);
 	return imem->readMemory<int>(getPlyPtr(), offsets::m_iHealth);
 }
 
 bool basePlayer::isAlive() {
+	imem->setModule(mem::CLIENTDLL);
 	return getHealth() >= 1;
 }
 
 Angle basePlayer::getEyeAngles() {
+	imem->setModule(mem::CLIENTDLL);
 	return imem->readMemory<Angle>(getPlyPtr(), offsets::m_angEyeAngles);
 }

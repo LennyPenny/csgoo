@@ -8,6 +8,11 @@
 class mem {
 public:
 
+	enum {
+		CLIENTDLL,
+		ENGINEDLL
+	};
+
 	static mem *getCsgo();
 
 	mem(const char *windowName);
@@ -23,7 +28,11 @@ public:
 	DWORD getProcID();
 	HANDLE getHandle();
 
-	bool setModule(const char *moduleName);
+	bool setModule(int num);
+	const char *getModuleOffsetEx(const char *moduleName);
+	const char *getClientDllOffset();
+	const char *getEngineDllOffset();
+
 	const char *getModuleOffset();
 
 	template <class retType>

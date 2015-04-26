@@ -11,7 +11,7 @@ void logic(mem *csgo) {
 	int idAtCrosshair = lply->getCrossHairID();
 	if (idAtCrosshair == 0) { return; }
 
-	basePlayer atCrosshair(entlist::getEntPtrFromID(idAtCrosshair), csgo);
+	basePlayer atCrosshair(entlist::getEntPtrFromID(idAtCrosshair, csgo), csgo);
 	if (atCrosshair.getTeam() == lply->getTeam()) { return; }
 
 	POINT point;
