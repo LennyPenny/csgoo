@@ -6,7 +6,8 @@ threadhelper::threadhelper(functype func) {
 
 
 DWORD WINAPI loop(functype func) {
-	mem *csgo = mem::getCsgo();
+	mem *csgo = new mem("Counter-Strike: Global Offensive");
+
 	for (;;) {
 		if (!csgo->checkForeGroundWindow()) {
 			Sleep(100);
@@ -19,5 +20,6 @@ DWORD WINAPI loop(functype func) {
 		func(csgo);
 
 		csgo->closeHandle();
+		Sleep(5);
 	}
 }

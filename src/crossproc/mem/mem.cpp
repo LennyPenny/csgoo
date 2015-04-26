@@ -50,7 +50,7 @@ bool mem::checkForeGroundWindow() {
 	BYTE keystates[256];
 	char title[256];
 	GetKeyState(0);//idk whyy
-	GetKeyboardState(keystates);
+	GetKeyboardState(keystates); //meep told me this is needed??
 
 	GetWindowTextA(GetForegroundWindow(), title, 256);
 
@@ -61,8 +61,8 @@ bool mem::checkForeGroundWindow() {
 }
 
 bool mem::setModule(const char *newModuleName) {
-	if (moduleOffset != 0 )
-		return true;
+	//if (moduleOffset != 0 )
+//		return true;
 
 	while (true) {
 		HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, getProcID());

@@ -2,13 +2,13 @@
 
 using namespace glob;
 
-localPlayer *localPlayer::getLocalPlayer() {
-	static localPlayer lply;
+localPlayer *localPlayer::getLocalPlayer(mem *imem) {
+	static localPlayer lply(imem);
 	return &lply;
 }
 
-localPlayer::localPlayer() {
-	plyPtr = mem::getCsgo()->readMemory<DWORD>(offsets::LocalPlayer_offset);
+localPlayer::localPlayer(mem *imem) {
+	plyPtr = imem->readMemory<DWORD>(offsets::LocalPlayer_offset);
 }
 
 localPlayer::localPlayer(DWORD lplyPtr) {
@@ -16,5 +16,34 @@ localPlayer::localPlayer(DWORD lplyPtr) {
 }
 
 int localPlayer::getCrossHairID() {
-	return mem::getCsgo()->readMemory<int>(getPlyPtr(), offsets::m_iCrosshairID);
+	imem->setModule("client.dll");
+	return imem->readMemory<int>(getPlyPtr(), offsets::m_iCrosshairID);
+}
+
+float localPlayer::getFlashDuration() {
+	imem->setModule("client.dll");
+	return imem->readMemory<float>(getPlyPtr(), offsets::m_flFlashDuration);
+
+}
+
+float localPlayer::getFlashAlpha() {
+	imem->setModule("client.dll");
+	return imem->readMemory<float>(getPlyPtr(), offsets::m_flFlashMaxAlpha);
+
+}
+
+void localPlayer::setFlashAlpha(float alpha) {
+	imem->setModule("client.dll");
+	imem->writeMemory<float>(getPlyPtr(), offsets::m_flFlashMaxAlpha, alpha);
+}
+
+void localPlayer::setFlashDuration(float duration) {
+	imem->setModule("client.dll");
+	imem->writeMemory<float>(getPlyPtr(), offsets::m_flFlashDuration, duration);
+
+}
+
+Vector localPlayer::getPunchVec() {
+	imem->setModule("client.dll");
+	return imem->readMemory<Vector>(getPlyPtr(), offsets::m_vecPunch);
 }

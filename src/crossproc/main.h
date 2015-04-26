@@ -11,21 +11,34 @@
 
 #define safecontinue(msToWait) csgo->closeHandle();Sleep(msToWait);continue;
 
+struct Vector {
+	float x, y, z;
+};
+struct Angle {
+	float x, y, z;
+};
+
 namespace glob {
 
 	namespace offsets
 	{
-		const DWORD LocalPlayer_offset = 0xa4b98c;
-		const DWORD HandleOnGround_offset = 0x14C;
-		const DWORD m_bSpotted  = 0x935;
-		const DWORD GlobalVars = 0x4e53b8;
-		const DWORD m_vecOrigin = 0x134;
-		const DWORD EntList = 0x49ed1b4;
-		const DWORD m_iCrosshairID = 0x2400;
-		const DWORD m_dwEntityList = 0x49EC194;
-		const DWORD m_iHealth = 0xfc;
-		const DWORD m_dwGlowObject = 0x4afde04;
-		const DWORD m_iTeamNum = 0xf0;
-		const DWORD viewpunch = 0x13DC;
+		const static DWORD LocalPlayer_offset = 0xa4a9bc;
+		const static DWORD HandleOnGround_offset = 0x14C;
+		const static DWORD m_bSpotted = 0x935;
+		const static DWORD GlobalVars = 0x4e53b8;
+		const static DWORD m_vecOrigin = 0x134;
+		const static DWORD m_iCrosshairID = 0x2400;
+		const static DWORD m_dwEntityList = 0x49ec244;
+		const static DWORD m_iHealth = 0xfc;
+		const static DWORD m_dwGlowObject = 0x4afce94;
+		const static DWORD m_iTeamNum = 0xf0;
+		const static DWORD m_flFlashMaxAlpha = 0x1da4;
+		const static DWORD m_flFlashDuration = 0x1da8;
+		const static DWORD m_vecPunch = 0x13e8;
+		const static DWORD m_angEyeAngles = 0x23a4;
+		const static DWORD m_dwClientState = 0x559434;
+		const static DWORD m_dwViewAngles = 0x4ce0;
+		const static DWORD m_dwInput = 0x4a34ab0;
+		const static DWORD m_dwInGame = 0xe8;
 	}
 }

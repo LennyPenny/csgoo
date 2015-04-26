@@ -6,16 +6,13 @@ triggerbot::triggerbot() {
 
 
 void logic(mem *csgo) {
-	localPlayer *lply = localPlayer::getLocalPlayer();
+	localPlayer *lply = localPlayer::getLocalPlayer(csgo);
 	if (!lply->isAlive()) { return; }
 	int idAtCrosshair = lply->getCrossHairID();
 	if (idAtCrosshair == 0) { return; }
 
-	//DWORD ply;
-	//ReadProcessMemory(csgo->getHandle(), csgo->getModuleOffset() + glob::offsets::m_dwEntityList + ( ( idAtCrosshair - 1 ) * 0x10 ), &ply, sizeof(DWORD), nullptr);
-
 	basePlayer atCrosshair(entlist::getEntPtrFromID(idAtCrosshair));
-	printf("%d\n", atCrosshair.getTeam());
+	atCrosshair.setMemoryInterface(csgo);
 	if (atCrosshair.getTeam() == lply->getTeam()) { return; }
 
 	POINT point;

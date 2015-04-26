@@ -7,5 +7,5 @@ entlist::entlist() {
 }
 
 DWORD entlist::getEntPtrFromID(int id) {
-	return mem::getCsgo()->readMemory<DWORD>(offsets::m_dwEntityList + ( id - 1 ) * 0x10);
+	return mem::getCsgo()->readMemory<DWORD>(offsets::m_dwEntityList + (( id - 1 ) * 0x10));
 }
