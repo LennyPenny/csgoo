@@ -3,11 +3,11 @@
 using namespace glob;
 
 localPlayer *localPlayer::getLocalPlayer(mem *imem) {
-	static localPlayer lply(imem);
-	return &lply;
+	return new localPlayer(imem);
 }
 
 localPlayer::localPlayer(mem *imem) {
+	setMemoryInterface(imem);
 	plyPtr = imem->readMemory<DWORD>(offsets::LocalPlayer_offset);
 }
 
@@ -44,6 +44,5 @@ void localPlayer::setFlashDuration(float duration) {
 }
 
 Vector localPlayer::getPunchVec() {
-	imem->setModule("client.dll");
 	return imem->readMemory<Vector>(getPlyPtr(), offsets::m_vecPunch);
 }

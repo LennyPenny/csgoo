@@ -17,9 +17,9 @@ int main(char *argv[], int argc) {
 
 	printf("%s\n", csgo->getWindowName());
 
-	//triggerbot trigger;
+	triggerbot trigger;
 	//noflash noflaash;
-	//glow gloow;
+	glow gloow;
 	norecoil noreil;
 
 

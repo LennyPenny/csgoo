@@ -6,7 +6,9 @@
 class basePlayer {
 public:
 	basePlayer();
+	basePlayer(mem *imem);
 	basePlayer(DWORD plyPtr);
+	basePlayer(DWORD plyPtr, mem *imem);
 
 	void setMemoryInterface(mem *iface);
 	

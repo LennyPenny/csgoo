@@ -5,7 +5,15 @@ using namespace glob;
 basePlayer::basePlayer() {	
 }
 
+basePlayer::basePlayer(mem *imem) {
+	setMemoryInterface(imem);
+}
+
 basePlayer::basePlayer(DWORD plPtr) {
+	plyPtr = plPtr;
+}
+basePlayer::basePlayer(DWORD plPtr, mem *imem) {
+	setMemoryInterface(imem);
 	plyPtr = plPtr;
 }
 

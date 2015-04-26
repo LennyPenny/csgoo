@@ -13,7 +13,7 @@ void glow::logic() {
 	size_t size = count * sizeof(GlowObjectDefinition_t);
 	ReadProcessMemory(imem->getHandle(), ( void * ) glowObjectArray, &glowObjects, size, nullptr);
 	for (int i = 0; i < count; i++) {
-		basePlayer curPlayer((DWORD)glowObjects[i].pEntity);
+		basePlayer curPlayer((DWORD)glowObjects[i].pEntity, imem);
 		if (!curPlayer.isAlive())
 			continue;
 		glowObjects[i].a = 1.f;
@@ -41,7 +41,8 @@ uint32_t glow::getGlowObjectCount() {
 }
 
 void logic3(mem *csgo) {
-	glow::imem = csgo;
+	if (glow::imem == 0)
+		glow::imem = csgo;
 	glow::logic();
 	Sleep(250);
 }
