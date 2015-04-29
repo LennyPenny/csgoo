@@ -7,9 +7,13 @@ glow::glow() {
 }
 
 void glow::logic() {
+	if (localPlayer::getLocalPlayer(imem)->getHealth() > 1)
+		return;
 	DWORD glowObjectArray = getGlowObjectArray();
-	GlowObjectDefinition_t glowObjects[128];
+	GlowObjectDefinition_t glowObjects[256];
 	int count = getGlowObjectCount();
+	if (count > 255)
+		count = 255;
 	size_t size = count * sizeof(GlowObjectDefinition_t);
 	imem->setModule(mem::CLIENTDLL);
 	ReadProcessMemory(imem->getHandle(), ( void * ) glowObjectArray, &glowObjects, size, nullptr);
@@ -19,7 +23,7 @@ void glow::logic() {
 			continue;
 		glowObjects[i].a = 1.f;
 		if (curPlayer.getTeam() != localPlayer::getLocalPlayer(imem)->getTeam()) {
-			glowObjects[i].r = 1;
+			glowObjects[i].r = 1;	
 			glowObjects[i].g = 0;
 			glowObjects[i].b = 0;
 		} else {
