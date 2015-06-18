@@ -1,11 +1,6 @@
 #include "threadhelper.h"
 
-threadhelper::threadhelper(functype func) {
-	CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)&loop, func, 0, NULL);
-}
-
-
-DWORD WINAPI loop(functype func) {
+static DWORD WINAPI loop(functype func) {
 	mem *csgo = new mem("Counter-Strike: Global Offensive");
 
 	for (;;) {
@@ -22,4 +17,10 @@ DWORD WINAPI loop(functype func) {
 		csgo->closeHandle();
 		Sleep(5);
 	}
+	
+	//TODO(nanocat): is "csgo" destroyed upon death of thread?
+}
+
+threadhelper::threadhelper(functype func) {
+	CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)&loop, func, 0, NULL);
 }
