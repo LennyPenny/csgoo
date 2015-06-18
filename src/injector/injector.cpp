@@ -1,4 +1,5 @@
 //by meep
+//TODO(nanocat): This code is clusterfuck, it's recommended that you rewrite it.
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -7,12 +8,15 @@
 #include <time.h>
 #include <psapi.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+
 namespace injector {
 	char valid_chars[] = { // yes i know i can do this better but i am lazy
 		'a', 'b', 'c', 'd', 'e', 'f', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
 	};
 
-	void quit(const char *format, ...)
+	/* void quit(const char *format, ...)
 	{
 		va_list args;
 
@@ -21,7 +25,14 @@ namespace injector {
 		va_end(args);
 
 		std::cin.get();
-		ExitProcess(0);
+		ExitProcess(0); // do not use this, use exit() instead
+	} */
+	
+	template<typename... Args>
+	void quit(const char *message, Args... vargs)
+	{
+		printf(message, vargs...);
+		exit(0);
 	}
 
 	// not entirely mine
